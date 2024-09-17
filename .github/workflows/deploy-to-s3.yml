@@ -13,10 +13,14 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '22'  # Use a stable Node.js version
+      - name: Install Node.js 22.8
+        run: |
+          curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+          sudo apt-get install -y nodejs
+        shell: bash
+
+      - name: Verify Node.js Version
+        run: node -v
 
       - name: Install Dependencies
         run: npm install
@@ -33,6 +37,3 @@ jobs:
         run: |
           npm install -g aws-cli
           aws s3 sync ./dist/ s3://$AWS_BUCKET_NAME --region $AWS_REGION --delete
-
-
-
