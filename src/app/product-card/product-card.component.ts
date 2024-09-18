@@ -19,7 +19,8 @@ export class ProductCardComponent {
     console.log(`${this.product.name} added to cart!`);
   }
   goToProductPage(): void {
-    this.router.navigate(['/product', this.product.id]); // Assuming 'name' is unique
+    // this.router.navigate(['/product', this.product.id]);
+    this.router.navigate(['/product', 1]); 
   }
 
 }

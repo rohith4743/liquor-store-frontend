@@ -12,7 +12,7 @@ export class ProductService {
     // Mocking data for "Jack Daniels"
     if (true) {
       return {
-        id: 1,
+        id: productId,
         name: 'Jack Daniels',
         description: 'A Tennessee whiskey with rich flavor and smooth finish.',
         tags: ['whiskey', 'alcohol', 'liquor'],
@@ -27,7 +27,7 @@ export class ProductService {
         ],
         rating: 4.7,
         coupons: [],
-
+        ids: [1, 2, 3, 4, 5, 6],
         sizes: ['50ml', '100ml', '200ml', '375ml', '750ml', '1.75L'],
         prices: [5, 10, 18, 25, 40, 60],
 

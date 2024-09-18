@@ -13,25 +13,34 @@
         <p class="text-warning">Rating: {{ product.rating }} / 5</p>
         <p><strong>ABV:</strong> {{ product.abv }}%</p>
         <p>{{ product.description }}</p>
-  
-        <!-- Size Selection -->
-        <div>
-          <h5>Select Size:</h5>
-            @for (size of product.sizes; track $index) {
-                <div >
-                    <label class="form-check-label">
-                      <input type="radio" name="size" [value]="$index" [(ngModel)]="selectedSizeIndex">
-                      {{ size }} - $
-                      {{ product.onSale[$index] ? product.salePrices[$index] : product.prices[$index] }}
-                      @if (product.onSale[$index]) {
-                        <span  class="badge bg-danger">On Sale</span>
-                      }
-                      
-                    </label>
-                  </div>
-            }
 
+        <div class="mt-3">
+          <h5>Size: {{ product.sizes[selectedSizeIndex] }}</h5>
+          <div>
+            <span *ngIf="product.onSale[selectedSizeIndex]" class="text-danger">
+              <del>\${{ product.prices[selectedSizeIndex] }}</del> 
+              \${{ product.salePrices[selectedSizeIndex] }} (On Sale)
+            </span>
+            <span *ngIf="!product.onSale[selectedSizeIndex]">
+              \${{ product.prices[selectedSizeIndex] }}
+            </span>
+          </div>
         </div>
+
+        <!-- Size Selection: Custom Buttons -->
+      <div class="mt-4">
+        <h5>Select Size:</h5>
+        <div class="size-buttons">
+          <button *ngFor="let size of product.sizes; let i = index" type="button" class="size-btn" [ngClass]="{'selected-size': selectedSizeIndex === i}"
+            (click)="selectSize(i)">
+            {{ size }} - 
+            <span *ngIf="product.onSale[i]">
+              <del>\${{ product.prices[i] }}</del> \${{ product.salePrices[i] }}
+            </span>
+            <span *ngIf="!product.onSale[i]">\${{ product.prices[i] }}</span>
+          </button>
+        </div>
+      </div>
   
         <!-- Quantity Selection -->
         <div class="mt-3">

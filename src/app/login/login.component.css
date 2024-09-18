@@ -1,0 +1,15 @@
+/* src/app/components/login/login.component.css */
+
+.container {
+    max-width: 5000px;
+    margin-top: 50px;
+  }
+  
+  .invalid-feedback {
+    color: red;
+  }
+  
+  button {
+    width: 100%;
+  }
+  

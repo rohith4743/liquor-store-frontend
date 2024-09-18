@@ -17,3 +17,46 @@ img {
     margin-bottom: 5px;
   }
   
+
+  /* src/app/components/product-page/product-page.component.css */
+
+/* Container for size buttons */
+.size-buttons {
+  display: flex;
+  gap: 10px; /* Spacing between buttons */
+}
+
+/* Size button styles */
+.size-btn {
+  padding: 10px 15px;
+  border: 2px solid #007bff;
+  background-color: transparent;
+  color: #007bff;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Hover effect for size buttons */
+.size-btn:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+}
+
+/* Selected size button styles */
+.selected-size {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Strikethrough and pricing styles */
+.size-btn del {
+  margin-right: 5px;
+  color: #dc3545;
+}
+
+.size-btn strong {
+  font-weight: bold;
+}
