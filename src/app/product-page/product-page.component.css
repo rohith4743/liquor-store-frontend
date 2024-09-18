@@ -1,0 +1,19 @@
+/* product-page.component.css */
+img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  h1 {
+    margin-bottom: 10px;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  .form-check-label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
