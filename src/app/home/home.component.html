@@ -1,0 +1,68 @@
+<!-- home.component.html -->
+
+<!-- Carousel Section -->
+<div id="specialOffersCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="assets/special-offer-1.avif" class="d-block w-100" alt="Special Offer 1">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/special-offer-2.avif" class="d-block w-100" alt="Special Offer 2">
+      </div>
+      <div class="carousel-item">
+        <img src="assets/special-offer-3.webp" class="d-block w-100" alt="Special Offer 3">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#specialOffersCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#specialOffersCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  
+  <!-- Product Sections -->
+  <div class="container">
+    <!-- On Sale Section -->
+    <div class="mb-4">
+      <h2>On Sale</h2>
+      <div class="row">
+        <!-- Placeholder for product cards -->
+        @for (product of onSaleProducts; track product.id) {
+            <div class="col-md-4" >
+                <app-product-card [product]="product"></app-product-card>
+              </div>
+         }
+      </div>
+    </div>
+  
+    <!-- New Products Section -->
+    <div class="mb-4">
+      <h2>New Arrivals</h2>
+      <div class="row">
+        <!-- Placeholder for product cards -->
+         @for (product of newProducts; track product.id) {
+            <div class="col-md-4" >
+                <app-product-card [product]="product"></app-product-card>
+              </div>
+         }
+        
+      </div>
+    </div>
+  
+    <!-- Popular Products Section -->
+    <div class="mb-4">
+      <h2>Popular Products</h2>
+      <div class="row">
+        <!-- Placeholder for product cards -->
+        @for (product of popularProducts; track product.id) {
+            <div class="col-md-4" >
+                <app-product-card [product]="product"></app-product-card>
+              </div>
+         }
+      </div>
+    </div>
+  </div>
+  

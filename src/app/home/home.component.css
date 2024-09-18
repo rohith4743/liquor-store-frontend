@@ -1,0 +1,14 @@
+/* home.component.css */
+.carousel {
+    max-height: 400px;
+    overflow: hidden;
+  }
+  
+  h2 {
+    margin-top: 20px;
+  }
+  
+  .product-card {
+    margin-bottom: 20px;
+  }
+  
