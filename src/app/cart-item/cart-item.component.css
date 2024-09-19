@@ -1,0 +1,15 @@
+/* src/app/components/cart-item/cart-item.component.css */
+
+/* Basic styling for cart item */
+.cart-item {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .cart-item-details h5 {
+    margin: 0;
+  }
+  
+  .cart-item-actions {
+    min-width: 150px;
+  }
+  

@@ -1,0 +1,22 @@
+<div class="container mt-5">
+    <h2>Your Cart</h2>
+  
+    <!-- Cart Items -->
+    <div *ngFor="let item of cartItems">
+      <app-cart-item 
+        [product]="item.product" 
+        [quantity]="item.quantity" 
+        (quantityChange)="updateQuantity($event)"
+        (removeItem)="removeItem($event)">
+      </app-cart-item>
+    </div>
+  
+    <!-- Total Price -->
+    <div class="mt-4">
+      <h4>Total: ${{ total.toFixed(2) }}</h4>
+    </div>
+  
+    <!-- Checkout Button -->
+    <button class="btn btn-success mt-3">Proceed to Checkout</button>
+  </div>
+  
