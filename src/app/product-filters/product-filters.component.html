@@ -1,0 +1,72 @@
+<!-- product-filters.component.html -->
+<div class="filter-container p-3 border rounded shadow-sm mb-3 bg-white">
+    <h5 class="mb-3">Filters</h5>
+  
+    <!-- Category Filter -->
+    <div class="form-group mb-2">
+      <label for="category">Category</label>
+      <select id="category" class="form-control" formControlName="category">
+        <option value="">Select Category</option>
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+    </div>
+  
+    <!-- Subcategory Filter -->
+    <div class="form-group mb-2">
+      <label for="subcategory">Subcategory</label>
+      <select id="subcategory" class="form-control" formControlName="subcategory">
+        <option value="">Select Subcategory</option>
+        <option *ngFor="let sub of subcategories" [value]="sub">{{ sub }}</option>
+      </select>
+    </div>
+  
+    <!-- Country Filter -->
+    <div class="form-group mb-2">
+      <label for="country">Country</label>
+      <select id="country" class="form-control" formControlName="country">
+        <option value="">Select Country</option>
+        <option *ngFor="let country of countries" [value]="country">{{ country }}</option>
+      </select>
+    </div>
+  
+    <!-- Size Filter -->
+    <div class="form-group mb-2">
+      <label for="size">Size</label>
+      <select id="size" class="form-control" formControlName="size">
+        <option value="">Select Size</option>
+        <option *ngFor="let size of sizes" [value]="size">{{ size }}</option>
+      </select>
+    </div>
+  
+    <!-- Price Range Filters -->
+    <div class="form-row mb-2">
+      <div class="col">
+        <label for="minPrice">Min Price</label>
+        <input type="number" id="minPrice" class="form-control" formControlName="minPrice" placeholder="Min Price">
+      </div>
+      <div class="col">
+        <label for="maxPrice">Max Price</label>
+        <input type="number" id="maxPrice" class="form-control" formControlName="maxPrice" placeholder="Max Price">
+      </div>
+    </div>
+  
+    <!-- On Sale Filter -->
+    <div class="form-group mb-2">
+      <label>
+        <input type="checkbox" formControlName="onSale"> On Sale
+      </label>
+    </div>
+  
+    <!-- ABV Range Filters -->
+    <div class="form-row mb-2">
+      <div class="col">
+        <label for="minAbv">Min ABV (%)</label>
+        <input type="number" id="minAbv" class="form-control" formControlName="minAbv" placeholder="Min ABV">
+      </div>
+      <div class="col">
+        <label for="maxAbv">Max ABV (%)</label>
+        <input type="number" id="maxAbv" class="form-control" formControlName="maxAbv" placeholder="Max ABV">
+      </div>
+    </div>
+  </div>
+  
