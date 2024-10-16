@@ -1,0 +1,94 @@
+<!-- product-filters.component.html -->
+<div class="filter-container p-3 border rounded shadow-sm mb-3 bg-white">
+    <h5 class="mb-3">Filters</h5>
+  
+    <form [formGroup]="filterForm" (change)="emitvalue()">
+      <!-- Category Filter -->
+      <div class="form-group mb-2">
+        <label for="category">Category</label>
+        <select id="category" class="form-control" formControlName="category">
+          <option value="">Select Category</option>
+          @for (cat of categories; track $index) {
+            <option [value]="cat">{{ cat }}</option>
+          }
+          
+        </select>
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="subcategory">Subcategory</label>
+        <select id="subcategory" class="form-control" formControlName="subcategory">
+          <option value="">Select Subcategory</option>
+
+          @for (subc_main of subcategories; track subc_main.main) {
+
+            @if(subc_main.category === category || category == "") {
+              <option [value]="subc_main.main"><strong>{{ subc_main.main }}</strong></option>
+
+              @for (subc of subc_main.subcategories; track $index) {
+                <option [value]="subc"> &nbsp;&nbsp;&nbsp; {{ subc.split(',').pop()?.trim() }}</option>
+              }
+            }
+            
+          }
+
+        </select>
+      </div>
+      
+    
+      <!-- Country Filter -->
+      <div class="form-group mb-2">
+        <label for="country">Country</label>
+        <select id="country" class="form-control" formControlName="country">
+          <option value="">Select Country</option>
+          @for (country of countries; track $index) {
+            <option [value]="country">{{ country }}</option>
+          }
+        </select>
+      </div>
+    
+      <!-- Size Filter -->
+      <div class="form-group mb-2" hidden>
+        <label for="size">Size</label>
+        <select id="size" class="form-control" formControlName="size">
+          <option value="">Select Size</option>
+          @for (size of sizes; track $index) {
+            <option  [value]="size">{{ size }}</option>
+          }
+        </select>
+      </div>
+    
+      <!-- Price Range Filters -->
+      <div class="form-row mb-2">
+        <div class="col">
+          <label for="minPrice">Min Price</label>
+          <input type="number" id="minPrice" class="form-control" formControlName="minPrice" placeholder="Min Price">
+        </div>
+        <div class="col">
+          <label for="maxPrice">Max Price</label>
+          <input type="number" id="maxPrice" class="form-control" formControlName="maxPrice" placeholder="Max Price">
+        </div>
+      </div>
+    
+      <!-- On Sale Filter -->
+      <div class="form-group mb-2" hidden>
+        <label>
+          <input type="checkbox" formControlName="onSale"> On Sale
+        </label>
+      </div>
+    
+      <!-- ABV Range Filters -->
+      <div class="form-row mb-2">
+        <div class="col">
+          <label for="minAbv">Min ABV (%)</label>
+          <input type="number" id="minAbv" class="form-control" formControlName="minAbv" placeholder="Min ABV">
+        </div>
+        <div class="col">
+          <label for="maxAbv">Max ABV (%)</label>
+          <input type="number" id="maxAbv" class="form-control" formControlName="maxAbv" placeholder="Max ABV">
+        </div>
+      </div>
+    </form>
+
+  </div>
+  

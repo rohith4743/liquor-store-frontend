@@ -4,6 +4,7 @@ import { ProductPageComponent } from './product-page/product-page.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { CartPageComponent } from './cart-page/cart-page.component';
+import { ProductResultsPageComponent } from './product-results-page/product-results-page.component';
 
 export const routes: Routes = [
     {
@@ -14,7 +15,7 @@ export const routes: Routes = [
     {
         path : "home",
         component : HomeComponent,
-        title : "Sked Home"
+        title : "Liquor Store Home"
     },
     { 
         path: 'product/:id', 
@@ -31,6 +32,16 @@ export const routes: Routes = [
     {
         path: "cart",
         component: CartPageComponent
+    },
+    {
+        path: "products",
+        component: ProductResultsPageComponent,
+        children: [
+            {
+              path: '**',
+              component: ProductResultsPageComponent
+            }
+          ]
     }
     
 ];

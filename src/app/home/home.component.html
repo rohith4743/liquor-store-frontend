@@ -22,6 +22,34 @@
       <span class="visually-hidden">Next</span>
     </button>
   </div>
+
+  <!-- Categories Section -->
+<div class="container mb-4">
+  <h2>Categories</h2>
+  <div class="d-flex flex-wrap justify-content-start">
+    <app-category
+      *ngFor="let category of categories"
+      [image]="category.image"
+      [label]="category.label"
+      [navigationUrl]="category.url">
+    </app-category>
+  </div>
+</div>
+
+<!-- Popular Subcategories Section -->
+<div class="container mb-4">
+  <h2>Popular Subcategories</h2>
+  <div class="d-flex flex-wrap justify-content-start">
+    <app-category
+      *ngFor="let subcategory of popularSubcategories"
+      [image]="subcategory.image"
+      [label]="subcategory.label"
+      [navigationUrl]="subcategory.url">
+    </app-category>
+  </div>
+</div>
+
+
   
   <!-- Product Sections -->
   <div class="container">

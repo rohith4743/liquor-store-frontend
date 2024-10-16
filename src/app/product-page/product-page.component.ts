@@ -38,9 +38,21 @@ export class ProductPageComponent implements OnInit {
 
   loadProductDetails(): void {
     if (this.productId) {
-      this.product = this.productService.getProductById(this.productId);
+
+      this.productService.getProductById(this.productId).subscribe({
+        next: (data: Product) => {
+          console.log(data)
+          this.product = data;
+
+          this.selectedSizeIndex = this.product?.ids.indexOf(this.productId || 1);
+
+        },
+        error: (error) => {
+          console.error('Error fetching product:', error);
+        }
+      });
+      // this.product = this.productService.getProductById(this.productId);
       // Determine the selected size index based on the product ID
-      this.selectedSizeIndex = this.product.ids.indexOf(this.productId);
     }
   }
 

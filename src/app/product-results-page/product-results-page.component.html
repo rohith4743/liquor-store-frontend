@@ -1,0 +1,37 @@
+<!-- product-results-page.component.html -->
+<div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-md-3">
+        <app-product-filters (filtersChanged)="applyFilters($event)" [category]="category" [subcategory]="subcategory"></app-product-filters>
+      </div>
+  
+      <div class="col-md-9">
+        <app-breadcrumb [pathSegments]="pathSegments"></app-breadcrumb>
+        
+        <!-- <app-products-sorting (sortChanged)="applySorting($event)"></app-products-sorting> -->
+        @if (searchTerm) {
+          <div class="mb-3">
+            <strong>Search results for:</strong> {{ searchTerm }}
+          </div>
+        }
+        
+        
+        <div class="row">
+          @for (card of cards; track $index) {
+            <div class="col-12 col-md-4 mb-4">
+              <app-product-card [product]="card"></app-product-card>
+            </div>
+          }
+          
+        </div>
+  
+        <app-products-pagination 
+          [totalItems]="totalItems" 
+          [currentPage]="currentPage"
+          (pageChanged)="onPageChange($event)"
+          (itemsPerPageChanged)="onItemsPerPageChange($event)">
+        </app-products-pagination>
+      </div>
+    </div>
+  </div>
+  

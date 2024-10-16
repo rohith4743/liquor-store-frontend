@@ -20,7 +20,7 @@ export class ProductCardComponent {
   }
   goToProductPage(): void {
     // this.router.navigate(['/product', this.product.id]);
-    this.router.navigate(['/product', 1]); 
+    this.router.navigate(['/product', this.product.id]); 
   }
 
 }
