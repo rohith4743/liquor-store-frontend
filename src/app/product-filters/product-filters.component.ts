@@ -32,30 +32,46 @@ export class ProductFiltersComponent {
         "ales, ipa",
         "ales, pale ale",
         "ales, saison"
-      ]
+      ],
+      "category" : "beer"
+    },
+    {
+      "main": "brandy",
+      "subcategories": [
+        "brandy, cognac",
+      ],
+      "category" : "liquor"
     },
     {
       "main": "brandy",
       "subcategories": [
         "brandy, armagnac",
         "brandy, calvados",
-        "brandy, cognac",
         "brandy, pisco"
-      ]
+      ],
+      "category" : "spirits"
     },
     {
       "main": "ciders & meads",
       "subcategories": [
         "ciders & meads, apple cider",
-        "ciders & meads, cider",
         "ciders & meads, melomel",
         "ciders & meads, pear cider",
         "ciders & meads, traditional mead"
-      ]
+      ],
+      "category" : "other beverages"
+    },
+    {
+      "main": "ciders & meads",
+      "subcategories": [
+        "ciders & meads, cider",
+      ],
+      "category" : "beer"
     },
     {
       "main": "dessert wine",
-      "subcategories": ["dessert wine, ice wine"]
+      "subcategories": ["dessert wine, ice wine"],
+      "category" : "wine"
     },
     {
       "main": "fortified wine",
@@ -64,11 +80,13 @@ export class ProductFiltersComponent {
         "fortified wine, marsala",
         "fortified wine, port",
         "fortified wine, sherry"
-      ]
+      ],
+      "category" : "wine"
     },
     {
       "main": "fruit-infused cider",
-      "subcategories": ["fruit-infused cider"]
+      "subcategories": ["fruit-infused cider"],
+      "category" : "other beverages"
     },
     {
       "main": "gin",
@@ -77,7 +95,8 @@ export class ProductFiltersComponent {
         "gin, london dry gin",
         "gin, navy strength gin",
         "gin, old tom gin"
-      ]
+      ],
+      "category" : "spirits"
     },
     {
       "main": "lagers",
@@ -89,7 +108,8 @@ export class ProductFiltersComponent {
         "lagers, pale lager",
         "lagers, pilsner",
         "lagers, vienna lager"
-      ]
+      ],
+      "category" : "beer"
     },
     {
       "main": "liqueur",
@@ -111,11 +131,13 @@ export class ProductFiltersComponent {
         "liqueur, orange",
         "liqueur, peach",
         "liqueur, sambuca"
-      ]
+      ],
+      "category" : "spirits"
     },
     {
       "main": "malbec",
-      "subcategories": ["malbec"]
+      "subcategories": ["malbec"],
+      "category" : "wine"
     },
     {
       "main": "red wines",
@@ -129,14 +151,16 @@ export class ProductFiltersComponent {
         "red wines, shiraz/syrah",
         "red wines, tempranillo",
         "red wines, zinfandel"
-      ]
+      ],
+      "category" : "wine"
     },
     {
       "main": "rosé wines",
       "subcategories": [
         "rosé wines, pinot noir rosé",
         "rosé wines, provence rosé"
-      ]
+      ],
+      "category" : "wine"
     },
     {
       "main": "rum",
@@ -144,15 +168,18 @@ export class ProductFiltersComponent {
         "rum, dark rum",
         "rum, spiced rum",
         "rum, white rum"
-      ]
+      ],
+      "category" : "liquor"
     },
     {
       "main": "sake",
-      "subcategories": ["sake"]
+      "subcategories": ["sake"],
+      "category" : "spirits"
     },
     {
       "main": "soju",
-      "subcategories": ["soju"]
+      "subcategories": ["soju"],
+      "category" : "spirits"
     },
     {
       "main": "sparkling wines",
@@ -161,7 +188,8 @@ export class ProductFiltersComponent {
         "sparkling wines, champagne",
         "sparkling wines, prosecco",
         "sparkling wines, sparkling rosé"
-      ]
+      ],
+      "category" : "wine"
     },
     {
       "main": "specialty beers",
@@ -170,7 +198,8 @@ export class ProductFiltersComponent {
         "specialty beers, fruit beer",
         "specialty beers, gose",
         "specialty beers, lambic"
-      ]
+      ],
+      "category" : "beer"
     },
     {
       "main": "stouts & porters",
@@ -179,7 +208,8 @@ export class ProductFiltersComponent {
         "stouts & porters, imperial stout",
         "stouts & porters, milk stout",
         "stouts & porters, porter"
-      ]
+      ],
+      "category" : "beer"
     },
     {
       "main": "tequila & mezcal",
@@ -188,11 +218,13 @@ export class ProductFiltersComponent {
         "tequila & mezcal, blanco (silver)",
         "tequila & mezcal, extra añejo",
         "tequila & mezcal, reposado"
-      ]
+      ],
+      "category" : "liquor"
     },
     {
       "main": "vodka",
-      "subcategories": ["vodka, flavored vodka"]
+      "subcategories": ["vodka, flavored vodka"],
+      "category" : "liquor"
     },
     {
       "main": "wheat beers",
@@ -200,7 +232,8 @@ export class ProductFiltersComponent {
         "wheat beers, american wheat beer",
         "wheat beers, hefeweizen",
         "wheat beers, witbier"
-      ]
+      ],
+      "category" : "beer"
     },
     {
       "main": "whiskey",
@@ -211,7 +244,8 @@ export class ProductFiltersComponent {
         "whiskey, rye whiskey",
         "whiskey, scotch whisky",
         "whiskey, tennessee whiskey"
-      ]
+      ],
+      "category" : "liquor"
     },
     {
       "main": "white wines",
@@ -225,7 +259,8 @@ export class ProductFiltersComponent {
         "white wines, sauvignon blanc",
         "white wines, viognier",
         "white wines, white zinfandel"
-      ]
+      ],
+      "category" : "wine"
     }
   ];  
 

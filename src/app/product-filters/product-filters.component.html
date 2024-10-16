@@ -21,11 +21,15 @@
           <option value="">Select Subcategory</option>
 
           @for (subc_main of subcategories; track subc_main.main) {
-            <option [value]="subc_main.main"><strong>{{ subc_main.main }}</strong></option>
 
-            @for (subc of subc_main.subcategories; track $index) {
-              <option [value]="subc"> &nbsp;&nbsp;&nbsp; {{ subc.split(',').pop()?.trim() }}</option>
+            @if(subc_main.category === category || category == "") {
+              <option [value]="subc_main.main"><strong>{{ subc_main.main }}</strong></option>
+
+              @for (subc of subc_main.subcategories; track $index) {
+                <option [value]="subc"> &nbsp;&nbsp;&nbsp; {{ subc.split(',').pop()?.trim() }}</option>
+              }
             }
+            
           }
 
         </select>
