@@ -21,10 +21,11 @@
         </ul>
   
         <!-- Search Bar -->
-        <form class="d-flex me-3">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <form class="d-flex me-3" (submit)="onSearch($event)">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" [(ngModel)]="searchTerm" name="search">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        
   
         <!-- Profile, Cart, and Login/Logout -->
         <ul class="navbar-nav">

@@ -17,23 +17,23 @@ export class Product {
   onSale: boolean[]; // Flags to indicate if the sizes are on sale
   salePrices: number[]; // Sale prices for sizes on sale
 
-  constructor() {
-    this.id = 0;
-    this.ids = [];
-    this.name = '';
-    this.description = '';
-    this.tags = [];
-    this.category = '';
-    this.subCategory = '';
-    this.brand = '';
-    this.imageUrl = '';
-    this.abv = 0;
-    this.reviews = [];
-    this.rating = 0;
-    this.coupons = [];
-    this.sizes = [];
-    this.prices = [];
-    this.onSale = [];
-    this.salePrices = [];
+  constructor(data?: any ) {
+    this.id = data.id || 0;
+    this.ids = data.ids || [];
+    this.name = data.name || '';
+    this.description = data.description || '';
+    this.tags = data.tags || [];
+    this.category = data.category || '';
+    this.subCategory = data.subCategory || '';
+    this.brand = data.brand || '';
+    this.imageUrl = data.imageUrl || 'assets/wine-g.jpeg';
+    this.abv = data.abv || 0;
+    this.reviews = data.reviews || [];
+    this.rating = data.rating || 0;
+    this.coupons = data.coupons || [];
+    this.sizes = data.sizes || [];
+    this.prices = data.prices || [];
+    this.onSale = data.onSale || [];
+    this.salePrices = data.salePrices || [];
   }
 }

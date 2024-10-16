@@ -1,22 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../modals/product';
 import { ProductCardComponent } from '../product-card/product-card.component';
-import { CommonModule } from '@angular/common';
 import { BreadcrumbComponent } from '../breadcrumb/breadcrumb.component';
-import { ActivatedRoute, Router, UrlSegment } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ProductFiltersComponent } from '../product-filters/product-filters.component';
 import { ProductsSortingComponent } from '../products-sorting/products-sorting.component';
 import { ProductsPaginationComponent } from '../products-pagination/products-pagination.component';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-product-results-page',
   standalone: true,
-  imports: [ProductCardComponent, CommonModule, BreadcrumbComponent, ProductFiltersComponent, ProductsSortingComponent, ProductsPaginationComponent],
+  imports: [ProductCardComponent, BreadcrumbComponent, ProductFiltersComponent, ProductsSortingComponent, ProductsPaginationComponent],
   templateUrl: './product-results-page.component.html',
   styleUrl: './product-results-page.component.css'
 })
 export class ProductResultsPageComponent implements OnInit {
-  products: Product[] = []; 
+
+  // products: Product[] = []; 
   cards: any[] = []
   pathSegments: string[] = [];
 
@@ -24,97 +25,113 @@ export class ProductResultsPageComponent implements OnInit {
   itemsPerPage: number = 10;
   totalItems: number = 0;
   currentSort: string = '';
+  
+  category : string | undefined;
+  searchTerm: string | undefined;
+  subcategory: string | undefined;
+  minABV: number | undefined;
+  maxABV: number | undefined;
+  minPrice: number | undefined;
+  origin: string | undefined;
+  maxPrice: number | undefined;
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private productService: ProductService) {}
+
 
   ngOnInit(): void {
-
+    
     if (this.route.children && this.route.children.length > 0) {
-      const childRoute = this.route.children[0]; // Access the first child route
-
-      // Subscribe to the child's url observable to get the segments
+      const childRoute = this.route.children[0]; 
+  
       childRoute.url.subscribe(urlSegments => {
-        
         let segments = urlSegments.map(segment => segment.path);
         this.pathSegments = segments;
-        this.fetchProducts(segments);
+        
+        if (segments.length > 0) {
+          this.category = segments[0];
+        } else {
+          this.category = "";
+          
+        }
+        this.subcategory = "";
+
+        if (segments.length > 1) {
+          this.subcategory = segments.slice(1).join(", ");
+        } else {
+          this.subcategory = "";
+        }
+  
+        this.loadProducts();
       });
     }
+  
+    // Subscribe to query parameters to get the search term
+    this.route.queryParams.subscribe(params => {
+      this.searchTerm = params['search'] || '';
+      this.loadProducts();
+    });
+
   }
+  
+
 
   applyFilters(filters: any) {
-    // Handle filter logic
-    console.log('Applied Filters:', filters);
-    // Use the filters to fetch or filter products as needed
-  }
-  applySorting(sortOption: string): void {
-    this.currentSort = sortOption;
 
-    if (sortOption === 'price_asc') {
-      this.products.sort((a, b) => a.prices[0] - b.prices[0]);
-    } else if (sortOption === 'price_desc') {
-      this.products.sort((a, b) => b.prices[0] - a.prices[0]);
-    } else if (sortOption === 'rating_asc') {
-      this.products.sort((a, b) => a.rating - b.rating);
-    } else if (sortOption === 'rating_desc') {
-      this.products.sort((a, b) => b.rating - a.rating);
+    if (filters["category"] != this.category) {
+      filters["subcategory"] = "";
+    }
+    
+    this.category = filters["category"];
+    this.subcategory = filters["subcategory"];
+
+    if (this.category && this.subcategory) {
+      this.pathSegments = [this.category, ...this.subcategory.split(", ")];
+    } else if(this.category) {
+        this.pathSegments = [this.category];
     }
 
-    this.applyPagination(); // Re-apply pagination after sorting
+
+    this.minABV = filters["minAbv"];
+    this.maxABV = filters["maxAbv"];
+    this.minPrice = filters["minPrice"];
+    this.maxPrice = filters["maxPrice"];
+    this.origin = filters["country"];
+    this.loadProducts();
   }
 
-  fetchProducts(route: string[]): void {
-    console.log(route)
-    this.products = [
-      {
-        id: 1,
-        ids: [1, 2],
-        name: 'La Marca',
-        description: 'A sparkling wine',
-        tags: ['sparkling', 'refreshing'],
-        category: 'wine',
-        subCategory: 'sparkling wine,prosecco',
-        brand: 'La Marca',
-        imageUrl: 'assets/wine-g.jpeg',
-        abv: 11,
-        reviews: [],
-        rating: 4.5,
-        coupons: [],
-        sizes: ['50ml', '100ml'],
-        prices: [15.99, 25.99],
-        onSale: [false, true],
-        salePrices: [0, 19.99]
-      },
-      // Add more mock products as needed
-    ];
-
-    this.totalItems = this.products.length;
-    this.applyPagination();
-  }
-
-  applyPagination(): void {
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = startIndex + this.itemsPerPage;
-    this.cards = this.products.slice(startIndex, endIndex).map((product) => {
-      const selectedSizeIndex = product.ids.indexOf(product.id);
-      const price = product.onSale[selectedSizeIndex] ? product.salePrices[selectedSizeIndex] : product.prices[selectedSizeIndex];
-
-      return {
-        id: product.id,
-        name: product.name,
-        price: price,
-        image: product.imageUrl,
-      };
-    });
+  onItemsPerPageChange(data:number) {
+      this.currentPage = 1;
+     this.itemsPerPage = data;
+     this.loadProducts();
   }
 
   onPageChange(page: number): void {
     this.currentPage = page;
-    this.applyPagination();
+    this.loadProducts();
   }
 
   // Handling sort change event
   handleSortChange(sortOption: string) {
-    this.applySorting(sortOption);
+    
+  }
+
+  loadProducts(): void {
+
+    this.productService
+      .getProducts(this.searchTerm, this.category, this.subcategory, this.minPrice, this.maxPrice, this.minABV, this.maxABV, undefined, undefined, this.origin, undefined, this.currentPage - 1, this.itemsPerPage)
+      .subscribe({
+        next: (data) => {
+          
+          this.cards = data["data"].map((product : any) => {
+            return {
+              ...product,
+              image:  '/assets/wine-g.jpeg'
+            };
+          });
+          this.totalItems = data["total"];
+          
+        },
+        error: (error) => console.log(error)
+      });
   }
 }
